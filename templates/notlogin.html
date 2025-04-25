@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="box">
+          <div class="toggle">
+            <button class="toggle-btn active" id="login-btn">Login</button>
+            <button class="toggle-btn" id="register-btn">Register</button>
+          </div>
+          <div class="form-wrapper">
+            <form id="login-form">
+              <input type="email" placeholder="Email" required>
+              <input type="password" placeholder="Password" required>
+              <button type="submit" class="submit-btn">Login</button>
+            </form>
+            <form id="register-form" style="display: none;">
+              <input type="text" placeholder="First Name" required>
+              <input type="text" placeholder="Last Name" required>
+              <input type="text" placeholder="Phone Number" required>
+              <input type="email" placeholder="Email" required>
+              <input type="text" placeholder="Address" required>
+              <input type="password" placeholder="Password" required>
+              <button type="submit" class="submit-btn">Register</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      
+      <script>
+       const loginBtn = document.getElementById('login-btn');
+const registerBtn = document.getElementById('register-btn');
+const loginForm = document.getElementById('login-form');
+const registerForm = document.getElementById('register-form');
+
+loginBtn.addEventListener('click', () => {
+  loginBtn.classList.add('active');
+  registerBtn.classList.remove('active');
+  loginForm.style.display = 'block';
+  registerForm.style.display = 'none';
+});
+
+registerBtn.addEventListener('click', () => {
+  registerBtn.classList.add('active');
+  loginBtn.classList.remove('active');
+  registerForm.style.display = 'block';
+  loginForm.style.display = 'none';
+});
+
+    </script>
+</body>
+</html>

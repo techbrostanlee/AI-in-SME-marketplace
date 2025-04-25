@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='checkout.css') }}">
+
+
+</head>
+
+
+<body>
+    <header>
+        <h1>Your Shopping Cart</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/cart">Cart (<span id="cart-count">{{ cart_items|length }}</span>)</a>
+            {% if current_user.is_authenticated %}
+                <a href="/logout">Logout</a>
+            {% else %}
+                <a href="/login">Login</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <h2>Order Summary</h2>
+
+    <div class="order-summary">
+        <ul>
+            {% for item in cart_items %}
+                <li>{{ item.product_name }}{% if item.quantity > 1 %} (x{{ item.quantity }}){% endif %}</li>
+            {% endfor %}
+        </ul>
+        
+        <h3>Total: ${{ total_price }}</h3>
+    </div>
+
+    <button id="confirm-checkout">Confirm & Pay</button>
+
+   
+
+<script>
+    document.getElementById("confirm-checkout").addEventListener("click", function() {
+        fetch("/checkout", {
+            method: "POST",  
+            headers: { "Content-Type": "application/json" }
+        })
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message);
+            window.location.href = "/";
+        })
+        .catch(error => console.error("Error:", error));
+    });
+</script>
+
+</body>
+</html>

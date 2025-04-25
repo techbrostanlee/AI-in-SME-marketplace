@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='cart.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Your Shopping Cart</h1>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/cart">Cart (<span id="cart-count">{{ cart_items|length }}</span>)</a>
+            {% if current_user.is_authenticated %}
+                <a href="/logout">Logout</a>
+            {% else %}
+                <a href="/login">Login</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <div class="cart-container">
+        {% if cart_items %}
+            {% for item in cart_items %}
+            <div class="cart-item" id="cart-item-{{ item.product_id }}">
+                <img src="{{ url_for('static', filename='assets/' + item.product_image) }}" 
+                    alt="{{ item.product_name }}" 
+                    class="cart-image">
+                
+                <div class="cart-details">
+                    <h2 class="cart-product-name">{{ item.product_name }}</h2>
+                    <p class="cart-price">Price: ${{ item.product_price }}</p>
+                    <p class="cart-quantity">Quantity: <span id="qty-{{ item.product_id }}">{{ item.quantity }}</span></p>
+                    <button class="remove-from-cart" data-product-id="{{ item.product_id }}">Remove</button>
+                </div>
+            </div>
+            {% endfor %}
+            
+            <button id="checkout-btn">Proceed to Checkout</button>
+        {% else %}
+            <p class="empty-cart">Your cart is empty.</p>
+        {% endif %}
+    </div>
+
+    <!-- Recommended Products Section -->
+    {% if recommended_products %}
+    <h2>Recommended for You</h2>
+    <div class="recommended-container">
+        {% for product in recommended_products %}
+            <div class="product">
+                <img src="{{ url_for('static', filename='assets/' + product.image) }}" 
+                alt="{{ product.name }}" 
+                class="product-image">
+                <h3>{{ product.name }}</h3>
+                <p>Category: {{ product.category }}</p>
+                <p>Price: ${{ product.price }}</p>
+                <button onclick="addToCart({{ product.id }})">Add to Cart</button>
+            </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <script>
+        function updateCartCount() {
+            $.get("/cart", function(data) {
+                $("#cart-count").text(data.cart_items.length);
+            });
+        }
+
+        // Remove item from cart
+        $(document).on("click", ".remove-from-cart", function () {
+            let productId = $(this).data("product-id");
+
+            $.ajax({
+                url: "/remove_from_cart",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({ product_id: productId }),
+                success: function (response) {
+                    alert(response.message);
+                    $("#cart-item-" + productId).remove();  // Remove item from UI
+                    updateCartCount(); // Update cart count
+                },
+                error: function (xhr) {
+                    alert("Error: " + xhr.responseJSON.error);
+                }
+            });
+        });
+
+        // Checkout button redirect
+        $("#checkout-btn").click(function () {
+            window.location.href = "/checkout";
+        });
+
+        updateCartCount();
+    </script>
+</body>
+</html>
