@@ -1,0 +1,75 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 15px 0;
+  }
+
+/* Order Summary Container */
+.order-summary {
+    width: 350px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin: 30px auto;
+}
+
+/* Order List */
+.order-summary ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.order-summary li {
+    background: #e0e0e0;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Total Price */
+h3 {
+    color: #333;
+    margin-top: 20px;
+}
+
+/* Confirm & Pay Button */
+button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 15px;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #218838;
+}
+
+/* Header Navigation Links */
+header a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    margin: 0 15px;
+}
+
+/* Change link color on hover */
+header a:hover {
+    text-decoration: underline;
+}

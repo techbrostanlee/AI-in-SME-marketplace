@@ -1,0 +1,126 @@
+/* General Styling */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4;
+  text-align: center;
+}
+
+/* Header Styling */
+header {
+  background-color: #333;
+  color: white;
+  padding: 15px 0;
+}
+
+nav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+/* User Profile Styling */
+.user-profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Align everything to the right */
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-direction: row; /* Ensure profile picture and name are on the same line */
+}
+
+.profile-pic {
+  width: 60px; /* Increased size for better visibility */
+  height: 60px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column; /* Arrange the name and logout vertically */
+  align-items: flex-end; /* Align name and logout to the right */
+  justify-content: center;
+  text-align: right;
+}
+
+.username {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+button.logout {
+  background-color: #dc3545; /* Red button for logout */
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button.logout:hover {
+  background-color: #c82333;
+}
+
+/* Product Container */
+.product-container,
+.recommended-container {  
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin: 20px;
+}
+
+/* Product Box */
+.product {
+  width: 250px;
+  text-align: center;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+  max-width: 250px;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin: auto;
+  border-radius: 8px;
+}
+
+/* Styling for recommended products */
+.recommended-container {
+  margin-top: 30px;
+  padding: 20px;
+  background: #e9f5ff; /* Light blue background to differentiate section */
+  border-radius: 10px;
+}
+
+/* Button Styling */
+button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #218838;
+}
