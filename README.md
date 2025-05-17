@@ -72,16 +72,11 @@ SMEs face significant challenges in adopting AI, including limited resources, te
    pip install -r requirements.txt
    ```
 
-3. **Initialize the database:**
-   ```bash
-   flask db init
-   flask db migrate
-   flask db upgrade
-   ```
 
-4. **Run the application:**
+
+3. **Run the application:**
    ```bash
-   flask run
+    run name.py
    ```
 
 ---
